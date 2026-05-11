@@ -1,0 +1,216 @@
+1. Aim
+To implement clustering algorithm for unsupervised classification and visualize clusters using Python.
+2. Theory
+Clustering is an unsupervised machine learning technique used to group similar data points.
+K-Means clustering divides data into K number of clusters.
+
+(Write only 2–3 lines in exam)
+
+3. Requirements
+1. Python
+2. Pandas
+3. Matplotlib
+4. Scikit-learn
+4. Installation Command
+
+Open Command Prompt and type:
+
+pip install pandas matplotlib scikit-learn
+5. Step-by-Step Procedure
+STEP 1: Import Required Libraries
+Code
+import pandas as pd
+
+import matplotlib.pyplot as plt
+
+from sklearn.datasets import load_iris
+
+from sklearn.cluster import KMeans
+Explanation
+Imports libraries for dataset loading, clustering and visualization.
+STEP 2: Load Dataset
+Code
+iris = load_iris()
+
+X = iris.data
+
+y = iris.target
+Explanation
+Loads Iris flower dataset.
+X contains numeric features and y contains species labels.
+STEP 3: Apply K-Means Clustering
+Code
+kmeans = KMeans(
+    n_clusters=3,
+    random_state=123,
+    n_init=25
+)
+
+clusters = kmeans.fit_predict(X)
+Explanation
+Creates K-Means model with 3 clusters and assigns cluster labels.
+K-Means Formula
+
+Distance=
+(x
+2
+	​
+
+−x
+1
+	​
+
+)
+2
++(y
+2
+	​
+
+−y
+1
+	​
+
+)
+2
+	​
+
+
+K-Means groups nearest data points together.
+
+STEP 4: Create DataFrame
+Code
+df = pd.DataFrame(
+    X,
+    columns=iris.feature_names
+)
+
+df['cluster'] = clusters
+
+df['species'] = y
+Explanation
+Adds cluster labels and species labels into dataframe.
+STEP 5: Evaluate Clusters
+Code
+print(pd.crosstab(
+    df['species'],
+    df['cluster']
+))
+Explanation
+Displays comparison between actual species and predicted clusters.
+STEP 6: Plot Clusters
+Code
+colors = ['red', 'blue', 'green']
+
+plt.figure(figsize=(10,6))
+Explanation
+Creates figure and colors for clusters.
+STEP 7: Draw Scatter Plot
+Code
+for i in range(3):
+
+    plt.scatter(
+        df[df['cluster']==i]['sepal length (cm)'],
+        df[df['cluster']==i]['sepal width (cm)'],
+        c=colors[i],
+        label=f'Cluster {i}',
+        s=80
+    )
+Explanation
+Plots cluster points using scatter graph.
+STEP 8: Add Labels and Title
+Code
+plt.xlabel("Sepal Length")
+
+plt.ylabel("Sepal Width")
+
+plt.title("K-means Clustering of Iris Data")
+
+plt.legend()
+
+plt.show()
+Explanation
+Displays clustered visualization graph.
+6. Complete Program
+# Import libraries
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.datasets import load_iris
+
+from sklearn.cluster import KMeans
+
+# Step 1: Load dataset
+
+iris = load_iris()
+
+X = iris.data
+
+y = iris.target
+
+# Step 2: Apply K-means clustering
+
+kmeans = KMeans(
+    n_clusters=3,
+    random_state=123,
+    n_init=25
+)
+
+clusters = kmeans.fit_predict(X)
+
+# Step 3: Add cluster labels
+
+df = pd.DataFrame(
+    X,
+    columns=iris.feature_names
+)
+
+df['cluster'] = clusters
+
+df['species'] = y
+
+# Step 4: Evaluate clusters
+
+print(pd.crosstab(
+    df['species'],
+    df['cluster']
+))
+
+# Step 5: Plot clusters
+
+colors = ['red', 'blue', 'green']
+
+plt.figure(figsize=(10,6))
+
+for i in range(3):
+
+    plt.scatter(
+        df[df['cluster']==i]['sepal length (cm)'],
+        df[df['cluster']==i]['sepal width (cm)'],
+        c=colors[i],
+        label=f'Cluster {i}',
+        s=80
+    )
+
+plt.xlabel("Sepal Length")
+
+plt.ylabel("Sepal Width")
+
+plt.title("K-means Clustering of Iris Data")
+
+plt.legend()
+
+plt.show()
+7. Output
+Cluster Table
+cluster   0   1   2
+species
+0         50   0   0
+1          0  48   2
+2          0  14  36
+Graph
+K-Means clustering graph is displayed with 3 colored clusters.
+8. Result
+K-Means clustering algorithm was implemented successfully and clusters were visualized.
+9. Conclusion
+Unsupervised classification was performed successfully using K-Means clustering algorithm.

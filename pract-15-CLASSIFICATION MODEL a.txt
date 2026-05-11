@@ -1,0 +1,174 @@
+1. Aim
+To implement a Classification Model using Decision Tree and evaluate its performance.
+2. Theory
+Classification is a machine learning technique used to classify data into different categories.
+Decision Tree is a supervised learning algorithm used for classification and prediction.
+
+(Write only 2–3 lines in exam)
+
+3. Requirements
+1. Python
+2. Pandas
+3. Matplotlib
+4. Scikit-learn
+4. Installation Command
+
+Open Command Prompt and type:
+
+pip install pandas matplotlib scikit-learn
+5. Step-by-Step Procedure
+
+STEP 1: Import Required Libraries
+Code
+import pandas as pd
+
+import matplotlib.pyplot as plt
+
+from sklearn.datasets import load_iris
+
+from sklearn.model_selection import train_test_split
+
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+
+from sklearn.metrics import accuracy_score, confusion_matrix
+Explanation
+Imports libraries for dataset handling, model creation, evaluation and plotting.
+STEP 2: Load Dataset
+Code
+data = load_iris()
+
+X = data.data
+
+y = data.target
+Explanation
+
+Loads Iris flower dataset.
+X contains input data and y contains target class labels.
+STEP 3: Split Dataset
+Code
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=1
+)
+Explanation
+Splits dataset into training and testing data.
+70% data is used for training and 30% for testing.
+
+STEP 4: Choose Classifier
+Code
+model = DecisionTreeClassifier()
+Explanation
+Chooses Decision Tree classifier for classification problem.
+
+STEP 5: Train Model
+Code
+model.fit(X_train, y_train)
+Explanation
+Trains the Decision Tree model using training data.
+
+STEP 6: Make Predictions
+Code
+y_pred = model.predict(X_test)
+Explanation
+Predicts output for testing data.
+
+STEP 7: Evaluate Performance
+Code
+print("Accuracy:", accuracy_score(y_test, y_pred))
+
+print("Confusion Matrix:\n",
+      confusion_matrix(y_test, y_pred))
+Explanation
+Calculates accuracy and confusion matrix to evaluate model performance.
+Accuracy Formula
+
+Accuracy=
+Total Predictions
+Correct Predictions
+	​
+
+Confusion Matrix Example
+Actual / Predicted	0	1
+0	TP	FP
+1	FN	TN
+STEP 8: Plot Decision Tree Diagram
+Code
+plt.figure(figsize=(12,8))
+
+plot_tree(model, filled=True)
+
+plt.title("Decision Tree Classification")
+
+plt.show()
+Explanation
+Displays graphical representation of Decision Tree classifier.
+
+6. Complete Program
+# Step 1: Import libraries
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.datasets import load_iris
+
+from sklearn.model_selection import train_test_split
+
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+
+from sklearn.metrics import accuracy_score, confusion_matrix
+
+# Step 2: Load dataset
+
+data = load_iris()
+
+X = data.data
+y = data.target
+
+# Step 3: Split dataset
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=1
+)
+
+# Step 4: Choose classifier
+
+model = DecisionTreeClassifier()
+
+# Step 5: Train model
+
+model.fit(X_train, y_train)
+
+# Step 6: Prediction
+
+y_pred = model.predict(X_test)
+
+# Step 7: Evaluation
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+
+print("Confusion Matrix:\n",
+      confusion_matrix(y_test, y_pred))
+
+# Diagram
+
+plt.figure(figsize=(12,8))
+
+plot_tree(model, filled=True)
+
+plt.title("Decision Tree Classification")
+
+plt.show()
+7. Output
+Accuracy
+Accuracy: 0.97
+Confusion Matrix
+[[14 0 0]
+ [0 17 1]
+ [0 1 12]]
+Diagram
+Decision Tree diagram is displayed.
+
+8. Result
+Decision Tree Classification model was implemented successfully and classifier performance was evaluated.
+
+9. Conclusion
+Classification was performed successfully using Decision Tree algorithm.

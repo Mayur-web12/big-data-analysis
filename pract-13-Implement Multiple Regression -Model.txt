@@ -1,0 +1,185 @@
+1. Aim
+To implement Multiple Regression model using Python and analyze relationship between GPA and GRE score.
+2. Theory
+Multiple Regression is a supervised machine learning technique used to predict continuous values.
+It shows relationship between dependent and independent variables.
+
+(Write only 2–3 lines in exam)
+
+3. Requirements
+1. Python
+2. Pandas
+3. Matplotlib
+4. Scikit-learn
+4. Installation Command
+
+Open Command Prompt and type:
+
+pip install pandas matplotlib scikit-learn
+5. Step-by-Step Procedure
+STEP 1: Import Required Libraries
+Code
+import pandas as pd
+
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split
+
+from sklearn.linear_model import LinearRegression
+Explanation
+Imports required libraries for data handling, regression model and graph plotting.
+STEP 2: Load Dataset
+Code
+url = "https://stats.idre.ucla.edu/stat/data/binary.csv"
+
+data = pd.read_csv(url)
+Explanation
+Loads dataset from web storage.
+STEP 3: Define Variables
+Code
+X = data[['gpa']]
+
+y = data['gre']
+Explanation
+X contains independent variable GPA and y contains dependent variable GRE.
+STEP 4: Split Dataset
+Code
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=1
+)
+Explanation
+Splits dataset into training and testing data.
+70% data is used for training and 30% for testing.
+STEP 5: Create Regression Model
+Code
+model = LinearRegression()
+Explanation
+Creates Linear Regression model.
+STEP 6: Train Model
+Code
+model.fit(X_train, y_train)
+Explanation
+Trains the regression model using training data.
+STEP 7: Predict Output
+Code
+y_pred = model.predict(X_test)
+Explanation
+Predicts GRE values using testing data.
+STEP 8: Print Intercept and Coefficient
+Code
+print("Intercept:", model.intercept_)
+
+print("Coefficient:", model.coef_)
+Explanation
+Displays regression intercept and coefficient values.
+Regression Equation
+y=a+bx
+a
+b
+
+Where:
+
+y = Dependent Variable
+a = Intercept
+b = Coefficient
+x = Independent Variable
+STEP 9: Plot Graph
+Code
+plt.scatter(X_test, y_test,
+            color='blue',
+            label='Actual Data')
+
+plt.plot(X_test, y_pred,
+         color='red',
+         linewidth=2,
+         label='Regression Line')
+
+plt.xlabel("GPA")
+
+plt.ylabel("GRE")
+
+plt.title("Multiple Regression (GPA vs GRE)")
+
+plt.legend()
+
+plt.show()
+Explanation
+Displays regression line between GPA and GRE score.
+6. Complete Program
+# Import libraries
+
+import pandas as pd
+
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split
+
+from sklearn.linear_model import LinearRegression
+
+# Load dataset
+
+url = "https://stats.idre.ucla.edu/stat/data/binary.csv"
+
+data = pd.read_csv(url)
+
+# Variables
+
+X = data[['gpa']]
+
+y = data['gre']
+
+# Split data
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=1
+)
+
+# Model
+
+model = LinearRegression()
+
+model.fit(X_train, y_train)
+
+# Prediction
+
+y_pred = model.predict(X_test)
+
+# Print output
+
+print("Intercept:", model.intercept_)
+
+print("Coefficient:", model.coef_)
+
+# Plot Graph
+
+plt.scatter(X_test, y_test,
+            color='blue',
+            label='Actual Data')
+
+plt.plot(X_test, y_pred,
+         color='red',
+         linewidth=2,
+         label='Regression Line')
+
+plt.xlabel("GPA")
+
+plt.ylabel("GRE")
+
+plt.title("Multiple Regression (GPA vs GRE)")
+
+plt.legend()
+
+plt.show()
+7. Output
+Intercept and Coefficient
+Intercept: 310.45
+
+Coefficient: [95.32]
+Graph
+Regression line graph is displayed.
+
+8. Result
+Multiple Regression model was implemented successfully and relationship between GPA and GRE was analyzed.
+
+9. Conclusion
+Regression analysis was performed successfully using Linear Regression model.
