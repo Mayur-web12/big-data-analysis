@@ -1,0 +1,146 @@
+Write a Program to Illustrate the Working of Jaql
+1. Aim
+To illustrate the working of Jaql operations such as filtering, transformation, grouping, and aggregation using Python.
+
+2. Theory
+Jaql is a query language used for processing and analyzing JSON data in Big Data applications.
+It is mainly used with Hadoop for handling semi-structured data.
+
+(Write only 2–3 lines in exam)
+
+3. Requirements
+1. Python
+2. JSON Module
+3. Any Python IDE
+
+4. Program Code
+import json
+
+# Step 1: Sample JSON data
+
+data = [
+    {"name": "Alice", "age": 25, "city": "Mumbai"},
+    {"name": "Bob", "age": 30, "city": "Delhi"},
+    {"name": "Charlie", "age": 35, "city": "Mumbai"}
+]
+
+print("Original Data:")
+print(json.dumps(data, indent=2))
+
+# Step 2: Filter (city = Mumbai)
+
+filtered = [p for p in data if p["city"] == "Mumbai"]
+
+print("\nFiltered Data (city = Mumbai):")
+print(json.dumps(filtered, indent=2))
+
+# Step 3: Transform (get only names)
+
+names = [p["name"] for p in filtered]
+
+print("\nNames from filtered data:")
+print(names)
+
+# Step 4: Group by city
+
+grouped = {}
+
+for p in data:
+    city = p["city"]
+
+    if city not in grouped:
+        grouped[city] = []
+
+    grouped[city].append(p)
+
+print("\nGrouped Data by City:")
+print(json.dumps(grouped, indent=2))
+
+# Step 5: Aggregate (average age in Mumbai)
+
+avg_age = sum(p["age"] for p in filtered) / len(filtered)
+
+print("\nAverage Age in Mumbai:")
+print(avg_age)
+
+5. Explanation of Code
+Step 1: Import JSON Module
+import json
+Explanation
+Used to work with JSON data.
+
+Step 2: Create JSON Data
+data = [
+ {"name":"Alice","age":25,"city":"Mumbai"}
+]
+Explanation
+Stores sample employee/person data in JSON format.
+
+Step 3: Filter Data
+filtered = [p for p in data if p["city"] == "Mumbai"]
+
+Explanation
+Selects only records where city is Mumbai.
+
+Filtering Example
+Before Filter:
+Alice, Bob, Charlie
+
+After Filter:
+Alice, Charlie
+
+Step 4: Transform Data
+names = [p["name"] for p in filtered]
+Explanation
+Extracts only names from filtered data.
+
+Step 5: Group Data
+grouped[city].append(p)
+Explanation
+Groups records based on city.
+
+Step 6: Aggregate Data
+avg_age = sum(p["age"] for p in filtered) / len(filtered)
+Explanation
+Calculates average age of people from Mumbai.
+Average Age Calculation
+
+For Mumbai:
+
+Ages:
+
+25 and 35
+
+Average:
+
+2
+25+35
+	​
+
+=30
+
+6. Output
+Original Data
+Alice  25  Mumbai
+Bob    30  Delhi
+Charlie 35 Mumbai
+
+Filtered Data
+Alice 25 Mumbai
+Charlie 35 Mumbai
+
+Names from Filtered Data
+['Alice', 'Charlie']
+
+Grouped Data
+Mumbai → Alice, Charlie
+Delhi → Bob
+
+Average Age in Mumbai
+30
+
+7. Result
+Jaql operations such as filtering, transformation, grouping and aggregation were performed successfully.
+
+8. Conclusion
+JSON data was processed successfully using Jaql-like operations in Python.
