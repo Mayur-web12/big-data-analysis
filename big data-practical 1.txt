@@ -1,0 +1,82 @@
+practical 1 Install, Configure and Run Hadoop & HDFS and Explore HDFS
+
+1. Aim
+To install, configure and run Hadoop and HDFS, and explore HDFS commands.
+
+2. Requirements
+Java
+Hadoop
+Linux/Ubuntu
+
+3. Steps
+
+Step 1: Install Java
+#sudo apt install openjdk-8-jdk
+
+Check Java Version
+#java -version
+
+Step 2: Download Hadoop
+#wget https://downloads.apache.org/hadoop/common/hadoop-3.3.6.tar.gz
+
+Step 3: Extract Hadoop
+#tar -xvzf hadoop-3.3.6.tar.gz
+
+Step 4: Configure Hadoop Environment
+Edit .bashrc
+
+#nano ~/.bashrc
+
+Add:
+
+#export HADOOP_HOME=/usr/local/hadoop
+#export PATH=$PATH:$HADOOP_HOME/bin
+
+Run:
+#source ~/.bashrc
+
+Step 5: Configure HDFS
+
+Edit:
+#core-site.xml
+#hdfs-site.xml
+
+Set NameNode and DataNode paths.
+
+Step 6: Format NameNode
+#hdfs namenode -format
+
+Step 7: Start Hadoop
+#start-dfs.sh
+
+Step 8: Check HDFS
+jps
+
+Processes:
+NameNode
+DataNode
+SecondaryNameNode
+
+4. Explore HDFS Commands
+
+Create Directory
+#hdfs dfs -mkdir /data
+
+Copy File to HDFS
+#hdfs dfs -put file.txt /data
+
+View Files
+#hdfs dfs -ls /data
+
+Read File
+#hdfs dfs -cat /data/file.txt
+
+Remove File
+#hdfs dfs -rm /data/file.txt
+
+5. Result
+Hadoop and HDFS were successfully installed, configured, and HDFS commands were executed successfully.
+
+6. Conclusion
+
+Hadoop distributed file system was configured and basic HDFS operations were performed.
