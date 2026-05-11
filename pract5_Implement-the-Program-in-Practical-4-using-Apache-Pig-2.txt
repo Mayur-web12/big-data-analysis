@@ -1,0 +1,183 @@
+1. Aim
+
+To perform Big Data operations such as grouping, sorting, joining, and filtering using Apache Pig.
+
+2. Theory
+What is Apache Pig?
+Apache Pig is a platform used for analyzing large datasets.
+It uses a scripting language called Pig Latin.
+Pig works on Hadoop and HDFS.
+It simplifies Big Data processing.
+
+3. Requirements
+Java
+Hadoop
+Apache Pig
+
+4. Download Apache Pig
+
+Open website:
+
+https://pig.apache.org/
+5. Step-by-Step Installation Procedure
+STEP 1: Open Apache Pig Website
+
+Go to:
+
+https://pig.apache.org/
+In Exam Write:
+Open Apache Pig official website.
+STEP 2: Open Release Page
+
+Under:
+
+News Section
+
+Click:
+
+Release Page
+In Exam Write:
+Open Pig release page from News section.
+STEP 3: Select Pig Version
+
+Click:
+
+Pig 0.8 and later
+In Exam Write:
+Select Pig 0.8 and later version.
+STEP 4: Choose Mirror
+
+Select any mirror download link.
+
+In Exam Write:
+Choose any download mirror.
+STEP 5: Download Apache Pig Files
+
+Download:
+
+pig-0.17.0.tar.gz
+
+and
+
+pig-0.17.0-src.tar.gz
+In Exam Write:
+Download Apache Pig binary and source files.
+
+
+STEP 6: Extract Files
+
+Use command:
+tar -xvzf pig-0.17.0.tar.gz
+STEP 7: Set Environment Variables
+
+Open .bashrc
+
+nano ~/.bashrc
+
+Add:
+
+export PIG_HOME=/usr/local/pig
+export PATH=$PATH:$PIG_HOME/bin
+
+Run:
+
+source ~/.bashrc
+In Exam Write:
+Configure Pig environment variables.
+STEP 8: Start Pig
+pig
+
+If Pig shell opens successfully, installation is complete.
+
+6. Create Student Dataset
+Create file:
+student_details.txt
+
+Add data:
+
+1,Rajiv,Reddy,21,9848022337,Hyderabad
+2,Siddarth,Battacharya,22,9848022338,Kolkata
+3,Rajesh,Khanna,22,9848022339,Delhi
+4,Preethi,Agarwal,21,9848022330,Pune
+5,Trupthi,Mohanthy,23,9848022336,Bhuwaneshwar
+6,Archana,Mishra,23,9848022335,Chennai
+7,Komal,Nayak,24,9848022334,Trivendram
+8,Bharathi,Nambiayar,24,9848022333,Chennai
+
+7. Load Data in Pig
+student_details = LOAD 'student_details.txt'
+USING PigStorage(',')
+AS (id:int, firstname:chararray, lastname:chararray,
+age:int, phone:chararray, city:chararray);
+
+8. Grouping Operation
+Code
+group_data = GROUP student_details BY age;
+DUMP group_data;
+Explanation
+GROUP groups records based on age.
+Output
+(21,{(4,Preethi,Agarwal,21,9848022330,Pune),
+(1,Rajiv,Reddy,21,9848022337,Hyderabad)})
+
+(22,{(3,Rajesh,Khanna,22,9848022339,Delhi),
+(2,Siddarth,Battacharya,22,9848022338,Kolkata)})
+
+(23,{(6,Archana,Mishra,23,9848022335,Chennai),
+(5,Trupthi,Mohanthy,23,9848022336,Bhuwaneshwar)})
+
+(24,{(8,Bharathi,Nambiayar,24,9848022333,Chennai),
+(7,Komal,Nayak,24,9848022334,Trivendram)})
+
+9. Sorting Operation
+Code
+order_by_data = ORDER student_details BY age DESC;
+DUMP order_by_data;
+Explanation
+ORDER BY sorts data by age in descending order.
+Output
+(8,Bharathi,Nambiayar,24,9848022333,Chennai)
+(7,Komal,Nayak,24,9848022334,Trivendram)
+(6,Archana,Mishra,23,9848022335,Chennai)
+(5,Trupthi,Mohanthy,23,9848022336,Bhuwaneshwar)
+(3,Rajesh,Khanna,22,9848022339,Delhi)
+(2,Siddarth,Battacharya,22,9848022338,Kolkata)
+(4,Preethi,Agarwal,21,9848022330,Pune)
+(1,Rajiv,Reddy,21,9848022337,Hyderabad)
+
+10. Joining Operation
+Load Customer Data
+customers1 = LOAD 'customers1.txt'
+USING PigStorage(',')
+AS (id:int,name:chararray,age:int,address:chararray,salary:int);
+
+customers2 = LOAD 'customers2.txt'
+USING PigStorage(',')
+AS (id:int,name:chararray,age:int,address:chararray,salary:int);
+Join Code
+customers3 = JOIN customers1 BY id, customers2 BY id;
+DUMP customers3;
+Explanation
+JOIN combines matching records from two datasets.
+Output
+(1,Ramesh,32,Ahmedabad,2000,1,Ramesh,32,Ahmedabad,2000)
+
+(2,Khilan,25,Delhi,1500,2,Khilan,25,Delhi,1500)
+
+(3,Kaushik,23,Kota,2000,3,Kaushik,23,Kota,2000)
+11. Filtering Operation
+Code
+filter_data = FILTER student_details BY city == 'Chennai';
+DUMP filter_data;
+Explanation
+FILTER selects only records matching condition.
+Output
+(6,Archana,Mishra,23,9848022335,Chennai)
+
+(8,Bharathi,Nambiayar,24,9848022333,Chennai)
+
+12. Result
+Apache Pig operations such as Grouping, Sorting, Joining, and Filtering were executed successfully.
+
+13. Conclusion
+Apache Pig was successfully installed and used for Big Data processing operations.

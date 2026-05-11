@@ -1,0 +1,81 @@
+1. Aim
+To perform Grouping, Sorting, Joining and Filtering operations using Apache Pig.
+
+2. Theory
+Apache Pig is a platform used for processing Big Data using Pig Latin language.
+
+(Only 2–3 lines enough in exam)
+
+3. Requirements
+1. Hadoop
+2. Apache Pig
+3. Java
+
+4. Installation Commands
+
+Write only important commands:
+
+tar -xvzf pig-0.17.0.tar.gz
+
+export PIG_HOME=/usr/local/pig
+
+export PATH=$PATH:$PIG_HOME/bin
+
+pig
+
+5. Program Code
+Load Data
+student_details = LOAD 'student_details.txt'
+USING PigStorage(',')
+AS (id:int, firstname:chararray,
+lastname:chararray, age:int,
+phone:chararray, city:chararray);
+Grouping
+group_data = GROUP student_details BY age;
+
+DUMP group_data;
+Sorting
+order_by_data = ORDER student_details BY age DESC;
+
+DUMP order_by_data;
+Filtering
+filter_data = FILTER student_details
+BY city == 'Chennai';
+
+DUMP filter_data;
+Joining
+customers3 = JOIN customers1 BY id,
+customers2 BY id;
+
+DUMP customers3;
+
+6. Explanation of Code
+
+Write small points only.
+
+Example:
+
+LOAD → Loads data file
+
+GROUP → Groups records by age
+
+ORDER → Sorts records
+
+FILTER → Selects records based on condition
+
+JOIN → Combines two datasets
+
+7. Output
+Write small output.
+
+Example:
+
+(6,Archana,Mishra,23,9848022335,Chennai)
+
+(8,Bharathi,Nambiayar,24,9848022333,Chennai)
+
+8. Result
+Apache Pig operations were executed successfully.
+
+9. Conclusion
+Big Data operations were performed successfully using Apache Pig.
