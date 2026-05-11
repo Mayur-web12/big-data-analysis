@@ -1,0 +1,226 @@
+1. Aim
+
+To store, insert, update, delete and retrieve big data using MongoDB and Python.
+
+2. Theory
+What is MongoDB?
+MongoDB is a NoSQL database.
+It stores data in JSON-like documents.
+It is used for handling Big Data.
+MongoDB is flexible because rows can have different columns.
+
+Example Document:
+
+{
+  "name": "Rahul",
+  "age": 22
+}
+3. Requirements
+Python
+MongoDB Atlas Account
+Internet Connection
+4. Install Required Packages
+
+Open Command Prompt / Terminal:
+
+pip install pymongo pandas
+5. Step-by-Step Procedure (VERY IMPORTANT FOR EXAM)
+STEP 1: Open MongoDB Atlas Website
+
+Go to:
+
+https://www.mongodb.com/atlas
+In Exam Write:
+Open MongoDB Atlas website.
+Sign up/Login to MongoDB Atlas.
+STEP 2: Create Cluster
+
+After login:
+
+Click:
+Build a Database
+
+Then:
+
+Select:
+FREE Shared Cluster
+
+Then click:
+
+Create
+In Exam Write:
+Create a free cluster in MongoDB Atlas.
+STEP 3: Open Collections
+
+After cluster creation:
+
+Click:
+Browse Collections
+
+OR
+
+Collections
+In Exam Write:
+Open Collections to create and manage databases.
+STEP 4: Create Database
+Click:
+Add My Own Data
+
+Enter:
+
+Database Name → studentDB
+Collection Name → students
+
+Then click:
+
+Create
+In Exam Write:
+Create database and collection.
+STEP 5: Insert Records
+Click:
+Insert Document
+
+Add data:
+
+{
+  "name": "Rahul",
+  "age": 22,
+  "course": "BCA"
+}
+
+Then click:
+
+Insert
+In Exam Write:
+Insert records using Insert Document option.
+STEP 6: Update Data
+Click:
+Edit Document
+
+Change values.
+
+Example:
+
+age = 23
+
+Then click:
+
+Update
+In Exam Write:
+Update existing records using Edit option.
+STEP 7: Delete Data
+Click:
+Delete Document
+
+Then confirm delete.
+
+In Exam Write:
+Delete unwanted records using Delete option.
+STEP 8: Connect MongoDB with Python
+
+Go to:
+
+Overview
+
+Then click:
+
+Connect
+STEP 9: Add IP Address
+Click:
+Add Current IP Address
+STEP 10: Create MongoDB User
+
+Enter:
+
+Username
+Password
+
+Then click:
+
+Create User
+In Exam Write:
+Create database user and allow IP access.
+STEP 11: Choose Driver
+Click:
+Connect your application
+
+Select:
+
+Driver → Python
+Version → 3.6 or later
+
+Copy connection string.
+
+Example:
+
+mongodb+srv://username:password@cluster0.mongodb.net/
+In Exam Write:
+Select Python driver and copy connection URL.
+6. Python Program
+from pymongo import MongoClient
+
+# Connect MongoDB
+client = MongoClient("mongodb+srv://username:password@cluster0.mongodb.net/")
+
+# Create Database
+db = client["studentDB"]
+
+# Create Collection
+collection = db["students"]
+
+# Insert Data
+data = {
+    "name": "Rahul",
+    "age": 22,
+    "course": "BCA"
+}
+
+collection.insert_one(data)
+
+print("Data Inserted Successfully")
+
+# Display Data
+for record in collection.find():
+    print(record)
+7. Program Explanation
+Step 1:
+
+Import MongoClient from pymongo.
+
+from pymongo import MongoClient
+Step 2:
+
+Connect Python with MongoDB Atlas.
+
+client = MongoClient("connection_string")
+Step 3:
+
+Create database.
+
+db = client["studentDB"]
+Step 4:
+
+Create collection.
+
+collection = db["students"]
+Step 5:
+
+Insert document.
+
+collection.insert_one(data)
+Step 6:
+
+Display records.
+
+collection.find()
+8. Output
+Data Inserted Successfully
+
+{'name': 'Rahul', 'age': 22, 'course': 'BCA'}
+9. Result
+
+MongoDB database was successfully connected with Python and data was inserted, updated, deleted and displayed successfully.
+
+10. Conclusion
+
+MongoDB Atlas was used to store and manipulate big data using Python successfully
