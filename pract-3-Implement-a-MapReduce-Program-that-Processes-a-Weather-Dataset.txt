@@ -1,0 +1,53 @@
+1. Aim
+
+To process weather data using MapReduce and calculate average temperature year-wise.
+
+2. Program
+
+# Sample Weather Dataset
+
+weather <- data.frame(
+  Year = c(2020, 2020, 2021, 2021, 2021),
+  Temperature = c(30, 32, 28, 35, 30)
+)
+
+# Map Phase
+
+map_output <- data.frame(
+  year = weather$Year,
+  temp = weather$Temperature
+)
+
+# Reduce Phase
+
+reduce_output <- aggregate(temp ~ year,
+                           data = map_output,
+                           FUN = mean)
+
+print(reduce_output)
+
+
+3. Explanation
+Step 1:
+
+Create weather dataset.
+
+Step 2: Map Phase
+
+Emit (Year, Temperature) pairs.
+
+Step 3: Reduce Phase
+
+Calculate average temperature using mean().
+
+4. Output
+Year	Average Temperature
+2020	31
+2021	31
+5. Result
+
+Average temperature for each year was calculated successfully.
+
+6. Conclusion
+
+Weather dataset was processed successfully using MapReduce technique.

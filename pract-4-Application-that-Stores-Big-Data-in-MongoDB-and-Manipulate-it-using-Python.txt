@@ -1,0 +1,147 @@
+1 AIM
+To store and manipulate big data in MongoDB using Python.
+
+2 REQUIREMENTS
+Python
+MongoDB Atlas
+PyMongo
+Pandas
+
+3 INSTALL REQUIRED TOOLS
+pip install pymongo pandas
+
+4 STEPS TO PERFORM PRACTICAL
+Step 1:
+Open MongoDB Atlas website and login/signup.
+
+Step 2:
+Create a new cluster.
+Click on Build Database
+Select Free Shared Cluster
+Click Create
+
+Step 3:
+Open Collections.
+Click on Browse Collections
+
+Step 4:
+Create Database and Collection.
+
+Click on Add My Own Data
+Enter Database Name
+Enter Collection Name
+Click Create
+
+Example:
+Database Name : StudentDB
+Collection Name : students
+
+Step 5:
+Insert records into collection.
+
+Click on Insert Document
+Add data
+Click Insert
+
+Example:
+
+{
+  "name": "Rahul",
+  "age": 21,
+  "city": "Mumbai"
+}
+
+Step 6:
+Update data.
+Select document
+Click Edit
+Modify values
+Click Update
+
+Step 7:
+Delete data.
+Select document
+Click Delete
+
+Step 8:
+Connect MongoDB with Python.
+Go to Overview
+Click Connect
+
+Step 9:
+Add current IP address and create user.
+Click Add Current IP
+Create username and password
+
+Step 10:
+Select Python driver.
+Click Connect Your Application
+Select:
+Driver = Python
+Version = 3.6 or latest
+
+Copy connection string.
+
+PROGRAM
+from pymongo import MongoClient
+import pandas as pd
+
+# Connect MongoDB
+
+client = MongoClient("mongodb+srv://username:password@cluster0.mongodb.net/")
+
+# Create Database
+
+db = client["StudentDB"]
+
+# Create Collection
+
+collection = db["students"]
+
+# Insert Data
+
+data = {
+    "name": "Rahul",
+    "age": 21,
+    "city": "Mumbai"
+}
+
+collection.insert_one(data)
+
+print("Data Inserted Successfully")
+
+# Display Data
+
+records = collection.find()
+
+for record in records:
+    print(record)
+
+# Update Data
+
+collection.update_one(
+    {"name": "Rahul"},
+    {"$set": {"age": 22}}
+)
+
+print("Data Updated")
+
+# Delete Data
+
+collection.delete_one({"name": "Rahul"})
+
+print("Data Deleted")
+OUTPUT
+Data Inserted Successfully
+
+{'name': 'Rahul', 'age': 21, 'city': 'Mumbai'}
+
+Data Updated
+
+Data Deleted
+
+11 RESULT
+MongoDB database was connected successfully and insert, update, delete operations were performed using Python.
+
+12 CONCLUSION
+Successfully implemented MongoDB database operations using Python.
