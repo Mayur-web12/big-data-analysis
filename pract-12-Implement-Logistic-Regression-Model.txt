@@ -1,0 +1,233 @@
+1. Aim
+To implement Logistic Regression and analyze the relationship between GRE score, GPA, rank and student admission.
+2. Theory
+Logistic Regression is a supervised machine learning algorithm used for classification problems.
+It predicts probability of outcomes such as admission or rejection.
+
+(Write only 2–3 lines in exam)
+
+3. Requirements
+1. Python
+2. Pandas
+3. NumPy
+4. Matplotlib
+5. Scikit-learn
+4. Installation Command
+
+Open Command Prompt and type:
+
+pip install pandas numpy matplotlib scikit-learn
+5. Step-by-Step Procedure
+STEP 1: Import Required Libraries
+Code
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+from sklearn.linear_model import LogisticRegression
+
+from sklearn.metrics import accuracy_score, confusion_matrix
+
+from sklearn.model_selection import train_test_split
+Explanation
+Imports required libraries for data handling, model creation, prediction and visualization.
+STEP 2: Load Dataset from Web
+Code
+url = "https://stats.idre.ucla.edu/stat/data/binary.csv"
+
+data = pd.read_csv(url)
+Explanation
+Loads admission dataset from web storage.
+STEP 3: Display Dataset
+Code
+print(data.head())
+Explanation
+Displays first five rows of dataset.
+Sample Dataset
+admit	gre	gpa	rank
+0	380	3.61	3
+1	660	3.67	3
+STEP 4: Define Variables
+Code
+X = data[['gre', 'gpa', 'rank']]
+
+y = data['admit']
+Explanation
+X contains input variables and y contains output variable.
+STEP 5: Split Dataset
+Code
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=1
+)
+Explanation
+Splits dataset into training and testing data.
+70% data is used for training and 30% for testing.
+STEP 6: Create Logistic Regression Model
+Code
+model = LogisticRegression(max_iter=200)
+Explanation
+Creates Logistic Regression model.
+STEP 7: Train Model
+Code
+model.fit(X_train, y_train)
+Explanation
+Trains the model using training dataset.
+STEP 8: Make Predictions
+Code
+y_pred = model.predict(X_test)
+Explanation
+Predicts admission results using testing data.
+STEP 9: Calculate Accuracy
+Code
+print("Accuracy:", accuracy_score(y_test, y_pred))
+Explanation
+Calculates accuracy of Logistic Regression model.
+Accuracy Formula
+
+Accuracy=
+Total Predictions
+Correct Predictions
+	​
+
+
+STEP 10: Generate Confusion Matrix
+Code
+print("Confusion Matrix:\n",
+      confusion_matrix(y_test, y_pred))
+Explanation
+Displays confusion matrix to check model performance.
+Confusion Matrix Example
+Actual / Predicted	0	1
+0	TN	FP
+1	FN	TP
+STEP 11: Predict Probabilities
+Code
+prob = model.predict_proba(X)[:, 1]
+Explanation
+Calculates probability of admission.
+STEP 12: Plot Logistic Regression Graph
+Code
+plt.scatter(data['gre'], prob,
+            color='blue', label='Data')
+
+plt.xlabel("GRE Score")
+
+plt.ylabel("Probability of Admission")
+
+plt.title("Logistic Regression Curve")
+Explanation
+Plots graph between GRE score and probability of admission.
+STEP 13: Draw Logistic Curve
+Code
+sorted_gre = np.sort(data['gre'])
+
+sorted_prob = prob[np.argsort(data['gre'])]
+
+plt.plot(sorted_gre, sorted_prob,
+         color='red',
+         linewidth=2,
+         label='Logistic Curve')
+
+plt.legend()
+
+plt.show()
+Explanation
+Displays smooth Logistic Regression curve.
+6. Complete Program
+# Import libraries
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, confusion_matrix
+from sklearn.model_selection import train_test_split
+
+# Load dataset from web
+
+url = "https://stats.idre.ucla.edu/stat/data/binary.csv"
+
+data = pd.read_csv(url)
+
+# Show dataset
+
+print(data.head())
+
+# Define variables
+
+X = data[['gre', 'gpa', 'rank']]
+
+y = data['admit']
+
+# Train-test split
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=1
+)
+
+# Create model
+
+model = LogisticRegression(max_iter=200)
+
+# Train model
+
+model.fit(X_train, y_train)
+
+# Prediction
+
+y_pred = model.predict(X_test)
+
+# Accuracy
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+
+# Confusion Matrix
+
+print("Confusion Matrix:\n",
+      confusion_matrix(y_test, y_pred))
+
+# Predict probabilities
+
+prob = model.predict_proba(X)[:, 1]
+
+# Plot graph
+
+plt.scatter(data['gre'], prob,
+            color='blue', label='Data')
+
+plt.xlabel("GRE Score")
+
+plt.ylabel("Probability of Admission")
+
+plt.title("Logistic Regression Curve")
+
+# Logistic Curve
+
+sorted_gre = np.sort(data['gre'])
+
+sorted_prob = prob[np.argsort(data['gre'])]
+
+plt.plot(sorted_gre, sorted_prob,
+         color='red',
+         linewidth=2,
+         label='Logistic Curve')
+
+plt.legend()
+
+plt.show()
+
+7. Output
+Accuracy
+Accuracy: 0.75
+Confusion Matrix
+[[65 10]
+ [20 25]]
+Graph
+Logistic Regression curve is displayed.
+
+8. Result
+Logistic Regression model was implemented successfully and admission prediction was performed.
+
+9. Conclusion
+Relationship between GRE score, GPA, rank and admission was analyzed successfully using Logistic Regression.
