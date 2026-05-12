@@ -1,0 +1,195 @@
+1. Aim
+To implement Decision Tree Classification using Machine Learning in Python.
+
+2. Theory
+Decision Tree is a supervised machine learning algorithm used for classification and prediction.
+It divides data into branches based on conditions and gives accurate predictions.
+
+3. Requirements
+1. Python
+2. Scikit-learn
+3. Pandas
+4. Matplotlib
+4. Installation Command
+
+Open Command Prompt and type:
+
+pip install scikit-learn pandas matplotlib
+In Exam Write:
+Install required Python libraries using pip command.
+
+5. Step-by-Step Procedure
+
+STEP 1: Import Required Libraries
+Code
+import pandas as pd
+
+from sklearn.datasets import load_iris
+
+from sklearn.model_selection import train_test_split
+
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+
+from sklearn import metrics
+
+import matplotlib.pyplot as plt
+Explanation
+Imports required libraries for dataset loading, model training, testing and plotting.
+
+STEP 2: Load Dataset
+Code
+iris = load_iris()
+
+X = iris.data
+
+y = iris.target
+Explanation
+Loads Iris flower dataset.
+X contains input data and y contains target output.
+
+STEP 3: Split Dataset
+Code
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=1
+)
+Explanation
+Splits dataset into training and testing data.
+70% data is used for training and 30% for testing.
+
+STEP 4: Create Decision Tree Model
+Code
+model = DecisionTreeClassifier()
+Explanation
+Creates Decision Tree classifier model.
+
+STEP 5: Train Model
+Code
+model.fit(X_train, y_train)
+Explanation
+Trains the model using training data.
+
+STEP 6: Make Predictions
+Code
+y_pred = model.predict(X_test)
+Explanation
+Predicts output using test data.
+
+STEP 7: Print Accuracy
+Code
+print("Accuracy:", metrics.accuracy_score(y_test, y_pred))
+Explanation
+Calculates accuracy of Decision Tree model.
+Accuracy Formula
+
+Accuracy=
+Total Predictions
+Correct Predictions
+	​
+
+
+STEP 8: Predict New Sample
+Code
+sample = [[5.1, 3.5, 1.4, 0.2]]
+
+print("Prediction for sample:", model.predict(sample))
+
+Explanation
+Predicts class for new flower sample data.
+
+STEP 9: Plot Decision Tree
+Code
+plt.figure(figsize=(12,8))
+
+plot_tree(
+    model,
+    feature_names=iris.feature_names,
+    class_names=iris.target_names,
+    filled=True
+)
+
+plt.title("Decision Tree Diagram")
+
+plt.show()
+
+Explanation
+Displays graphical representation of Decision Tree.
+
+6. Complete Program
+# Import required libraries
+
+import pandas as pd
+
+from sklearn.datasets import load_iris
+
+from sklearn.model_selection import train_test_split
+
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+
+from sklearn import metrics
+
+import matplotlib.pyplot as plt
+
+# Load dataset
+
+iris = load_iris()
+
+X = iris.data
+
+y = iris.target
+
+# Split data into training and testing
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=1
+)
+
+# Create Decision Tree model
+
+model = DecisionTreeClassifier()
+
+# Train model
+
+model.fit(X_train, y_train)
+
+# Make predictions
+
+y_pred = model.predict(X_test)
+
+# Print Accuracy
+
+print("Accuracy:", metrics.accuracy_score(y_test, y_pred))
+
+# Predict new sample
+
+sample = [[5.1, 3.5, 1.4, 0.2]]
+
+print("Prediction for sample:", model.predict(sample))
+
+# Plot Decision Tree
+
+plt.figure(figsize=(12,8))
+
+plot_tree(
+    model,
+    feature_names=iris.feature_names,
+    class_names=iris.target_names,
+    filled=True
+)
+
+plt.title("Decision Tree Diagram")
+
+plt.show()
+
+7. Output
+Accuracy
+Accuracy: 0.97
+Prediction
+Prediction for sample: [0]
+Decision Tree Diagram
+Graphical tree structure is displayed.
+
+8. Result
+Decision Tree Classification model was implemented successfully and predictions were obtained accurately.
+
+9. Conclusion
+Decision Tree algorithm was successfully used for classification and prediction using Iris dataset.
